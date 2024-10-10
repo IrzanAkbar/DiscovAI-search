@@ -29,7 +29,7 @@ export const formatePrompt = (contexts, query) =>
 
 export async function genLLMTextChunk({ query, contexts }) {
   const prompt = formatePrompt(contexts, query);
-  const model = openai("gpt-4o-mini");
+  const model = openai("gpt-4-turbo");
   const result = await streamText({
     model: model,
     prompt: prompt,
@@ -42,7 +42,7 @@ export async function genRelatedQuery({ query, contexts }) {
     JSON.stringify(contexts).slice(0, 4000),
     query
   );
-  const model = openai("gpt-4o-mini");
+  const model = openai("gpt-4o-turbp");
   const result = await generateObject({
     model,
     prompt,
@@ -58,7 +58,7 @@ export async function translate({ query }) {
     return query;
   }
   const prompt = TRANSLATE(query);
-  const model = openai("gpt-4o-mini");
+  const model = openai("gpt-4-turbo");
   const { text } = await generateText({
     model,
     prompt,
